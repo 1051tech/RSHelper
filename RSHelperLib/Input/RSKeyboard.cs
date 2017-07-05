@@ -1,5 +1,7 @@
 ﻿using Dapplo.Windows.Input;
 using System;
+using System.Collections.Concurrent;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -11,6 +13,9 @@ namespace RSHelperLib.Input
     /// </summary>
     public static class RSKeyboard
     {
+        private static ConcurrentBag<ThreadState> waitingStates = new ConcurrentBag<ThreadState>()
+        { ThreadState.Running, ThreadState.Background, ThreadState.WaitSleepJoin, ThreadState.Suspended, ThreadState.SuspendRequested };
+
         /// <summary>Creates a task that waits for a keypress and completes when keypress is triggered.</summary>
         /// <param name="key">The key to wait for.</param>
         public static async Task WaitForKeyPress(Key key)
@@ -19,7 +24,7 @@ namespace RSHelperLib.Input
             keyboardThread.SetApartmentState(ApartmentState.STA);
             keyboardThread.Start(key);
 
-            while (keyboardThread.ThreadState == ThreadState.Running || keyboardThread.ThreadState == ThreadState.Background || keyboardThread.ThreadState == ThreadState.WaitSleepJoin)
+            while (waitingStates.Any(state => state == keyboardThread.ThreadState))
                 await Task.Delay(20);
         }
 

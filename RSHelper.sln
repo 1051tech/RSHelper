@@ -3,13 +3,20 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSHelper", "RSHelper\RSHelper.csproj", "{8D787344-CE0B-462E-A3BE-F7F66A57F9BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSHelperUI", "RSHelper\RSHelperUI.csproj", "{8D787344-CE0B-462E-A3BE-F7F66A57F9BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RSHelperLib", "RSHelperLib\RSHelperLib.csproj", "{23A4CED9-19D3-4F0F-BE22-7D067EE8E620}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F5B8F8A-B187-481B-8513-10CD059BF44F}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{B32996B2-100C-4E44-ABF8-61D345B9C4C6}"
+	ProjectSection(SolutionItems) = preProject
+		RSHelper\bin\Debug\Scripts\AbyssManager.cs = RSHelper\bin\Debug\Scripts\AbyssManager.cs
+		RSHelper\bin\Debug\Scripts\MagicTrainer.cs = RSHelper\bin\Debug\Scripts\MagicTrainer.cs
+		RSHelper\bin\Debug\Scripts\Testscript.cs = RSHelper\bin\Debug\Scripts\Testscript.cs
 	EndProjectSection
 EndProject
 Global
@@ -39,5 +46,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B32996B2-100C-4E44-ABF8-61D345B9C4C6} = {9F5B8F8A-B187-481B-8513-10CD059BF44F}
 	EndGlobalSection
 EndGlobal

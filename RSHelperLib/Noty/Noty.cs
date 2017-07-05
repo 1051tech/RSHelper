@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace RSHelperLib.Noty
 {
@@ -15,7 +16,7 @@ namespace RSHelperLib.Noty
             get
             {
                 if (_noty == null)
-                    _noty = new NotifyIcon() { Icon = System.Drawing.SystemIcons.Shield, Text = "RSHelper", BalloonTipIcon = ToolTipIcon.Info, BalloonTipTitle = "Notification from script:", Visible = true };
+                    _noty = new NotifyIcon() { Icon = Properties.Resources.RSHelper, Text = "RSHelper", BalloonTipIcon = ToolTipIcon.Info, BalloonTipTitle = "Notification from script:", Visible = true };
                 return _noty;
             }
         } // creates a new system tray icon if doesn't already exist

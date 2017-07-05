@@ -43,13 +43,14 @@ namespace RSHelperLib.API
         public class GrandExchangeReport
         {
             public string Trend { get; set; }
-            public int Price { get; set; }
+            public string Price { get; set; }
+            public int RealPrice => int.Parse(Price.Trim(' '));
         }
 
         public class GrandExchangeTrend
         {
             public string Trend { get; set; }
-            public string change { get; set; }
+            public string Change { get; set; }
         }
     }
 }
