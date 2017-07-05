@@ -2,6 +2,8 @@
 ///<name>RSAbyss</name>
 ///<version>0.1</version>
 
+//css_reference WindowsBase.dll;
+
 using RSHelperLib;
 using RSHelperLib.API;
 using RSHelperLib.Input;
@@ -19,7 +21,15 @@ public class AbyssManager : IScript
     private const int NATURE_RUNE_ID = 561;
     private const int PURE_ESSENCE_ID = 7936;
 	
-	private TimeSpan ElapsedTime => DateTime.Now.Subtract(startingTime);
+	private TimeSpan ElapsedTime
+	{
+		get { return DateTime.Now.Subtract(startingTime); }
+	}
+	
+	private decimal RoundTripsPerHour
+	{
+		get { return decimal.Round(roundTrips / (decimal)ElapsedTime.TotalHours, 1); }
+	}
 
     public AbyssManager()
     {
@@ -41,7 +51,6 @@ public class AbyssManager : IScript
             await RSKeyboard.WaitForKeyPress(Key.Home);
             await Noty.Alert();
             roundTrips++;
-            CalculateRoundTrips();
             await Noty.Notify($"Trips/hr: {roundTripsPerHour} | Profit/hr: {roundTripsPerHour * profitOnAverage}"
                 + Environment.NewLine
                 + $"Elapsed time: {ElapsedTime.ToString(@"hh\:mm\:ss")}", 3);
@@ -52,7 +61,4 @@ public class AbyssManager : IScript
             }
         }
     }
-
-    private void CalculateRoundTrips() =>
-            roundTripsPerHour = decimal.Round(roundTrips / (decimal)ElapsedTime.TotalHours, 1);
 }

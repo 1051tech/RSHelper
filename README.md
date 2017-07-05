@@ -3,6 +3,10 @@ Wrapper for helpful RuneScape scripting (not botting, no automation of in-game t
 *MagicTrainer script is for testing out helper wrapper functionality, not for in-game use.*
 
 # Updates
+v0.3:
+- Fixed script code
+- Fixed issue with RSAbyss and RSMagic scripts throwing errors
+
 v0.2:
 - Did major cleaning of files
 - Changed script base class to interface
@@ -11,4 +15,4 @@ v0.2:
 -- TestScript DOES work?
 
 # TODO:
-Figure out why CS-Script is rendering my scripts invalid because they really really... REALLY aren't.
+Fix the assembly reference code to avoid requiring declarations within scripts

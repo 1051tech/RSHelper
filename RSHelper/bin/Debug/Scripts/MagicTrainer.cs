@@ -13,7 +13,10 @@ public sealed class MagicTrainer : IScript
     private int expMultiplier = 48;
     private int iterations = 500;
     private Random pressGen = new Random(Environment.TickCount);
-    public MagicTrainer() => RSHelper.OpenClient();
+    public MagicTrainer()
+	{
+		RSHelper.OpenClient();
+	}
 
     public async Task Run()
     {

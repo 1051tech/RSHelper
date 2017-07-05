@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Diagnostics;
+using System.Linq;
 
 namespace RSHelperLib.Noty
 {
@@ -16,7 +18,17 @@ namespace RSHelperLib.Noty
             get
             {
                 if (_noty == null)
-                    _noty = new NotifyIcon() { Icon = Properties.Resources.RSHelper, Text = "RSHelper", BalloonTipIcon = ToolTipIcon.Info, BalloonTipTitle = "Notification from script:", Visible = true };
+                {
+                    _noty = new NotifyIcon()
+                    {
+                        Icon = Properties.Resources.RSHelper,
+                        Text = "RSHelper",
+                        BalloonTipIcon = ToolTipIcon.Info,
+                        BalloonTipTitle = "Notification from script:",
+                        Visible = true,
+                        ContextMenu = new ContextMenu(new MenuItem[] { new MenuItem("Quit", new EventHandler((object sender, EventArgs e) => Environment.Exit(0))) { Index = 0 } }),
+                    };
+                }
                 return _noty;
             }
         } // creates a new system tray icon if doesn't already exist
@@ -45,6 +57,11 @@ namespace RSHelperLib.Noty
                 for (var i = 0; i < beepCount; i++)
                     Console.Beep(10000, 250);
             });
+        }
+
+        private static void OnQuit(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

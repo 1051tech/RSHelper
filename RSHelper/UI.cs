@@ -1,6 +1,7 @@
 ﻿using CSScriptLibrary;
 using RSHelperLib;
 using RSHelperLib.Input;
+using RSHelperLib.Noty;
 using System;
 using System.Collections.Concurrent;
 using System.IO;
@@ -29,6 +30,7 @@ namespace RSHelperUI
                 lvi.SubItems.Add(script.Version);
                 cLvScripts.Items.Add(lvi);
             }
+            Task.Run(async () => await Noty.Notify("RSHelper initialized. Select script!", 2));
         }
 
         private void LoadScriptSelection()
@@ -49,8 +51,7 @@ namespace RSHelperUI
             var uid = Guid.Parse(e.Item.Text);
             ScriptObj scriptObj;
             scriptDict.TryGetValue(uid, out scriptObj);
-
-            CSScript.Evaluator.ReferenceDomainAssemblies();
+            
             currentScript = await CSScript.Evaluator.LoadCodeAsync<IScript>(scriptObj.GetCode(), null);
             Thread scriptThread = null;
             var result = Task.Factory.StartNew(async () =>
